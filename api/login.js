@@ -1,6 +1,6 @@
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs"; 
 
 dotenv.config();
 
@@ -37,11 +37,7 @@ export default async function handler(req, res) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Convert the database OTP to a number for comparison
-    const dbOtpAsNumber = parseInt(user.otp, 10);
-    const incomingOtpAsNumber = parseInt(OTP, 10);
-
-    if (dbOtpAsNumber !== incomingOtpAsNumber) {
+    if (user.otp !== OTP) {
       await connection.end();
       return res.status(401).json({ message: "Invalid OTP" });
     }
@@ -54,4 +50,5 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Server error: " + error.message });
   }
 }
+
 
