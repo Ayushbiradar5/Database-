@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+   <div class="body">
+    <div class="login-container">
+        
+        <form id="login-form" method="POST">
+            <div class="tag">
+                <h2>Login</h2>
+            </div>
+            <div class="input-group">
+                <label for="username">email</label>
+                <input type="text" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="input-group">
+              <label for="OTP">OTP</label>
+              <input type="OTP" id="OTP" name="OTP" placeholder="Enter your OTP" required>
+              <button type="button" id="send-otp">Send OTP</button>
+            </div>
+
+            <button type="submit">Login</button>
+            <p class="signup-link">Don't have an account? <a href="signup.html">Sign up</a></p>
+        </form>
+    </div>
+    </div>
+</body>
+</html>
+
+<script>
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = {
+    email: document.getElementById('email').value,
+    password: document.getElementById('password').value,
+    OTP: document.getElementById('OTP').value
+  };                                                                  
+
+  const res = await fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData),
+  });
+
+  const result = await res.json();
+  if (res.ok) {
+    alert("Login successful!");
+    window.location.href = 'amazon.html';
+  } else {
+    alert("Login failed: " + result.message);
+  }
+});
+</script>
+
+<script>
+document.getElementById('send-otp').addEventListener('click', async () => {
+  const email = document.getElementById('email').value;
+  if (!email) {
+    alert("Please enter your email first.");
+    return;
+  }
+
+  const res = await fetch('/api/send-otp', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email })
+  });
+
+  const result = await res.json();
+  if (res.ok) {
+    alert("OTP sent to your email!");
+  } else {
+    alert("Failed to send OTP: " + result.error);
+  }
+});
+</script>
