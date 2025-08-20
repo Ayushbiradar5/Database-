@@ -162,7 +162,7 @@
    /* Reusing existing image from your public folder */
    background-image: url(flipkart_home.png);
    background-size: cover;
-   height: 440px;
+   height: 200px;
 }
 
 /* Shop section */
@@ -227,4 +227,5 @@
     background-size: cover;
     background-position: center;
 }
+
 
