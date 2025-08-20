@@ -160,7 +160,7 @@
 /* Hero */
 .hero-page {
    /* Reusing existing image from your public folder */
-   background-image: url(PD25_GW_Hero_H1_Static_BDR_JP_2x._CB790001309_.jpg);
+   background-image: url(flipkart_home.png);
    background-size: cover;
    height: 440px;
 }
@@ -227,3 +227,4 @@
     background-size: cover;
     background-position: center;
 }
+
