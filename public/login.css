@@ -10,7 +10,7 @@ body {
 
 body::before {
     content: "";
-    background: url('loginpage.png') no-repeat center center fixed;
+    background: url('flipkart_login.png') no-repeat center center fixed;
     background-size: cover;
     position: fixed;
     top: 0;
@@ -92,6 +92,7 @@ button:hover {
     color: #4285f4;
     text-decoration: none;
 }
+
 
 
 
